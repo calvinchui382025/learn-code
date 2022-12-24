@@ -18,10 +18,12 @@
     "axios": "^1.2.1",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
+    "react-burger-menu": "^3.0.8",
     "react-dom": "^18.2.0",
     "react-parallax-tilt": "^1.7.76",
     "react-redux": "^8.0.5",
     "react-scripts": "5.0.1",
+    "redux-burger-menu": "^0.2.8",
     "typescript": "^4.9.4",
     "web-vitals": "^2.1.4"
   },
