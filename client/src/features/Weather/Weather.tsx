@@ -2,14 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/system';
 import WeatherCard from '../../components/WeatherCard/WeatherCard';
 import { gridFormer } from './utils';
-import { TextField, Typography } from '@mui/material';
-import { cloneDeep } from 'lodash';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   setSearchInputValue,
-  searchInputValue,
-} from './weatherSlice'
-import { requestCurrentWeather } from './weatherAPI';
+  fetchLocationWeather,
+} from './reducers';
+import { 
+  searchInputValueSelector,
+  allLocationsDataSelector,
+} from './selectors';
+import { 
+  TextField, 
+  Typography 
+} from '@mui/material';
 //======================================================
 
 //======================================================
@@ -91,32 +96,23 @@ const dummyData = [
 const Weather = () => {
 
   const dispatch = useAppDispatch();
-  const searchValue = useAppSelector(searchInputValue)
+  const searchValue = useAppSelector(searchInputValueSelector)
+  const allLocationsData = useAppSelector(allLocationsDataSelector);
 
   const [grid, setGrid] = useState<any[]>([]);
-  // const [searchInput, setSearchInput] = useState<string>('');
-  const [locationsData, setLocationsData] = useState<any>([]);
   
   useEffect(() => {
-    const newGrid = gridFormer(locationsData);
+    const newGrid = gridFormer(allLocationsData);
     setGrid(newGrid);
-  }, [locationsData]);
+  }, [allLocationsData]);
 
   const handleInputChange = (input: { target: { value: string; }; }) => {
-    // setSearchInput(input.target.value);
     dispatch(setSearchInputValue(input.target.value))
   }
 
   const handleEnter = (input: any) => {
     if(input.keyCode === 13 && searchValue.length > 0) {
-      requestCurrentWeather(searchValue).then((res) => {
-        if (res.name) {
-          const newLocationsData = cloneDeep(locationsData);
-          newLocationsData.push(res);
-          setLocationsData(newLocationsData);
-          dispatch(setSearchInputValue(''))
-        }
-      })
+      fetchLocationWeather();
     }
   }
 

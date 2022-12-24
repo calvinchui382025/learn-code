@@ -1,13 +1,23 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
-import weatherReducer from '../features/Weather/weatherSlice';
+import { configureStore, ThunkAction, Action, combineReducers, applyMiddleware } from '@reduxjs/toolkit';
+import { createMiddleware, createReducer } from 'async-selector-kit';
+import weatherReducer from '../features/Weather/reducers';
+
+const rootReducer = combineReducers({
+  AsyncSelector: createReducer(),
+  weather: weatherReducer,
+})
+
+const middlewares = [
+  createMiddleware()
+]
 
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-    weather: weatherReducer,
-  },
-});
+  reducer: rootReducer,
+  middleware: middlewares,
+})
+
+// @ts-ignore
+window.store = store;
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

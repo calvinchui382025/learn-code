@@ -1,9 +1,12 @@
 import axios from 'axios';
+import {store} from '../../app/store';
 //======================================================
 const WeatherAPIBaseURL = 'http://api.weatherapi.com/v1';
 const WeatherAPIKey = 'bed04062ad3b4779b0950016221212';
 //======================================================
-export const requestCurrentWeather = async (location: string) => { // just fetch forecast weather, it also includes current weather
+export const requestCurrentWeather = async () => { // just fetch forecast weather, it also includes current weather
+  const state = store.getState();
+  const location = state.weather.searchInputValue;
   const forecastWeatherURL = `${WeatherAPIBaseURL}/forecast.json`;
   const forecastWeatherParams = {
     key: WeatherAPIKey,
@@ -11,7 +14,6 @@ export const requestCurrentWeather = async (location: string) => { // just fetch
     days: 7,
   }
   const forecastWeather = await axios.get(forecastWeatherURL, { params: forecastWeatherParams });
-  console.log({ forecastWeather });
   const response: any = {};
   if (forecastWeather.status === 200) {
     const { data } = forecastWeather;
@@ -24,7 +26,6 @@ export const requestCurrentWeather = async (location: string) => { // just fetch
     response.minTemp = forecast.forecastday[0].day.mintemp_f;
     response.maxTemp = forecast.forecastday[0].day.maxtemp_f;
   };
-
-  console.log({ response });
+  
   return response;
 }
