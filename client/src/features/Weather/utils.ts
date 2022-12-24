@@ -3,7 +3,7 @@ export const conditionMeta: any = {
   "1000": {
       "condition": "Sunny",
       "video": "/videos/Clear.mp4",
-      "textColor": "gainsboro"
+      "textColor": "black"
     },
   "1003": {
       "condition": "Partly cloudy",
