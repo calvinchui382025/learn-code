@@ -1,10 +1,13 @@
 import { configureStore, ThunkAction, Action, combineReducers, applyMiddleware } from '@reduxjs/toolkit';
 import { createMiddleware, createReducer } from 'async-selector-kit';
 import weatherReducer from '../features/Weather/reducers';
+import { reducer as burgerMenu } from 'redux-burger-menu';
+//======================================================
 
 const rootReducer = combineReducers({
   AsyncSelector: createReducer(),
   weather: weatherReducer,
+  burgerMenu,
 })
 
 const middlewares = [

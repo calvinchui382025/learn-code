@@ -21,9 +21,9 @@ import {
 const Root = styled('div')({
   display: 'flex',
   flexDirection: 'column',
-  padding: '8px',
+  // padding: '8px',
   width: '100%',
-  height: '100%',
+  height: '100vh',
   backgroundColor: 'gainsboro',
   overflowY: 'auto',
   overflowX: 'hidden',
@@ -32,7 +32,7 @@ const Header = styled('div')({
   display: 'flex',
   // justifyContent: 'space-between',
   alignItems: 'center',
-  margin: '12px',
+  margin: '24px 12px 12px 110px',
 });
 const Title = styled(Typography)({
   marginRight: '12px',
@@ -48,6 +48,7 @@ const CardContainer = styled('div')({
 const Row = styled('div')({
   display: 'flex',
   flexDirection: 'row',
+  justifyContent: 'center',
 });
 //======================================================
 const dummyData = [
