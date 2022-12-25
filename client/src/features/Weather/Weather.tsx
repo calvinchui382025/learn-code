@@ -103,10 +103,12 @@ const Weather = () => {
   
   useEffect(() => {
     const newGrid = gridFormer(allLocationsData);
+    console.log({newGrid})
     setGrid(newGrid);
   }, [allLocationsData]);
 
   const handleInputChange = (input: { target: { value: string; }; }) => {
+    console.clear();
     dispatch(setSearchInputValue(input.target.value))
   }
 
@@ -141,16 +143,22 @@ const Weather = () => {
       </Header>
       <CardContainer >
         {
-          grid.map((row) => {
-            return <Row>
+          grid.map((row, i) => {
+            return (
+            <Row 
+              key={`${row}${i}`}
+            >
               {
-                row.map((location:any) => {
+                row.map((location:any, i: number) => {
                   return (
-                    <WeatherCard locationData={location} />
+                    <WeatherCard 
+                      key={`${location}${i}`} 
+                      locationData={location} 
+                    />
                   )
                 })
               }
-            </Row>
+            </Row>)
           })
         }
       </CardContainer>
