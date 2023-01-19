@@ -36,13 +36,11 @@ root.render(
             <WhiteDivider />
             <StyledLink to={'/Weather'} >Weather</StyledLink>
             <WhiteDivider />
-            <StyledLink to={'/Test'} >Test</StyledLink>
           </BurgerMenu>
           <div id='page-wrap'>
             <Routes>
               <Route path='/' element={ <Home /> }/>
               <Route path='/Weather' element={ <Weather /> }/>
-              <Route path='/Test' element={  <div style={{height: '100vh'}}>TEST PAGE</div> }/>
             </Routes>
           </div>
         </div>
