@@ -15,25 +15,11 @@ import {
   TextField, 
   Typography 
 } from '@mui/material';
+import { Header, Root } from '../../styled-components/styles';
 //======================================================
 
 //======================================================
-const Root = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  // padding: '8px',
-  width: '100%',
-  height: '100vh',
-  backgroundColor: 'gainsboro',
-  overflowY: 'auto',
-  overflowX: 'hidden',
-});
-const Header = styled('div')({
-  display: 'flex',
-  // justifyContent: 'space-between',
-  alignItems: 'center',
-  margin: '24px 12px 12px 110px',
-});
+
 const Title = styled(Typography)({
   marginRight: '12px',
   // color: 'gainsboro',

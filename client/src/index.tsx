@@ -14,6 +14,7 @@ import {
   Routes,
 } from 'react-router-dom';
 // import ErrorPage from './components/ErrorPage/ErrorPage';
+import Home from './features/Home/Home';
 import Weather from './features/Weather/Weather';
 import BurgerMenu from './components/BurgerMenu/BurgerMenu';
 //======================================================
@@ -31,12 +32,13 @@ root.render(
             outerContainerId={'outer-container'}
             width={ '20%' }
           >
-            <Link to={'/'} >Weather</Link>
+            <Link to={'/'} >Home</Link>
             <Link to={'/Weather'} >Weather</Link>
             <Link to={'/Test'} >Test</Link>
           </BurgerMenu>
           <div id='page-wrap'>
             <Routes>
+              <Route path='/' element={ <Home /> }/>
               <Route path='/Weather' element={ <Weather /> }/>
               <Route path='/Test' element={  <div style={{height: '100vh'}}>TEST PAGE</div> }/>
             </Routes>
