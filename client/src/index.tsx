@@ -10,13 +10,13 @@ import {
   BrowserRouter,
   Route,
   // RouterProvider,
-  Link,
   Routes,
 } from 'react-router-dom';
 // import ErrorPage from './components/ErrorPage/ErrorPage';
 import Home from './features/Home/Home';
 import Weather from './features/Weather/Weather';
 import BurgerMenu from './components/BurgerMenu/BurgerMenu';
+import { StyledLink, WhiteDivider } from './styled-components/styles';
 //======================================================
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -32,9 +32,11 @@ root.render(
             outerContainerId={'outer-container'}
             width={ '20%' }
           >
-            <Link to={'/'} >Home</Link>
-            <Link to={'/Weather'} >Weather</Link>
-            <Link to={'/Test'} >Test</Link>
+            <StyledLink to={'/'} >Home</StyledLink>
+            <WhiteDivider />
+            <StyledLink to={'/Weather'} >Weather</StyledLink>
+            <WhiteDivider />
+            <StyledLink to={'/Test'} >Test</StyledLink>
           </BurgerMenu>
           <div id='page-wrap'>
             <Routes>
