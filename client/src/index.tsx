@@ -2,55 +2,48 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
-import App from './App';
+// import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import {
-  createBrowserRouter,
-  RouterProvider,
+  // createBrowserRouter,
+  BrowserRouter,
+  Route,
+  // RouterProvider,
+  Link,
+  Routes,
 } from 'react-router-dom';
-import ErrorPage from './components/ErrorPage/ErrorPage';
+// import ErrorPage from './components/ErrorPage/ErrorPage';
 import Weather from './features/Weather/Weather';
 import BurgerMenu from './components/BurgerMenu/BurgerMenu';
 //======================================================
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 //======================================================
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/Weather',
-    element: <Weather />,
-  },
-  {
-    path: '/Test',
-    element: <div>TEST PAGE</div>
-  }
-])
-//======================================================
 root.render(
   <React.StrictMode>
     <Provider store={store} >
-      <div id="outer-container">
-        <BurgerMenu 
-          pageWrapId={ "page-wrap" } 
-          outerContainerId={'outer-container'}
-          width={ '20%' }
-          // isOpen={ false }
-          // onOpen={() => {console.log('opened')}}
-        >
-          <a id="home" href="/">Home</a>
-          <a id="weather" href="/Weather">Weather</a>
-          <a id="test" href="/Test">Test</a>
-        </BurgerMenu>
-        <div id='page-wrap'>
-          <RouterProvider router={router}/>
+
+      <BrowserRouter>
+        <div id="outer-container">
+          <BurgerMenu 
+            pageWrapId={ "page-wrap" } 
+            outerContainerId={'outer-container'}
+            width={ '20%' }
+          >
+            <Link to={'/'} >Weather</Link>
+            <Link to={'/Weather'} >Weather</Link>
+            <Link to={'/Test'} >Test</Link>
+          </BurgerMenu>
+          <div id='page-wrap'>
+            <Routes>
+              <Route path='/Weather' element={ <Weather /> }/>
+              <Route path='/Test' element={  <div style={{height: '100vh'}}>TEST PAGE</div> }/>
+            </Routes>
+          </div>
         </div>
-      </div>
+        </BrowserRouter>
+        
     </Provider>
   </React.StrictMode>
 );
