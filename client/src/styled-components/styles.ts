@@ -1,6 +1,7 @@
 import { Divider } from '@mui/material';
 import { styled } from '@mui/system';
 import { Link } from 'react-router-dom';
+import BurgerMenu from '../components/BurgerMenu/BurgerMenu';
 //======================================================
 export const Root = styled('div')({
   display: 'flex',
@@ -29,4 +30,15 @@ export const WhiteDivider = styled(Divider)({
   color: 'gainsboro',
   borderColor: 'gainsboro',
   margin: '14px 0px',
+})
+//======================================================
+export const StyledBurgerMenu = styled(BurgerMenu)({
+  // backgroundColor: 'pink',
+  '.bm-menu': {
+    // overflow: 'hidden !important',
+    // background: 'grey',
+    '.bm-item-list': {
+      height: '',
+    }
+  }
 })
