@@ -9,7 +9,7 @@ export const Root = styled('div')({
   // padding: '8px',
   width: '100%',
   height: '100vh',
-  backgroundColor: 'gainsboro',
+  // backgroundColor: 'gainsboro',
   overflowY: 'auto',
   overflowX: 'hidden',
 });
@@ -17,7 +17,8 @@ export const Root = styled('div')({
 export const Header = styled('div')({
   display: 'flex',
   alignItems: 'center',
-  margin: '24px 12px 12px 110px',
+  padding: '24px 12px 20px 110px',
+  backgroundColor: 'gainsboro',
 });
 //======================================================
 export const StyledLink = styled(Link)({
@@ -41,4 +42,9 @@ export const StyledBurgerMenu = styled(BurgerMenu)({
       height: '',
     }
   }
+})
+//======================================================
+export const StyledBody = styled('div')({
+  display: 'flex',
+  margin: '40px',
 })

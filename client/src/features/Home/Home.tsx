@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import React from 'react';
-import { Header, Root } from '../../styled-components/styles';
+import { Header, Root, StyledBody } from '../../styled-components/styles';
 //======================================================
 
 export default () => {
@@ -9,6 +9,9 @@ export default () => {
       <Header>
         <Typography variant='h3'>Home Page</Typography>
       </Header>
+      <StyledBody>
+        <Typography variant='h5'>Calvin's Playground</Typography>
+      </StyledBody>
     </Root>
   )
 }
