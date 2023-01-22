@@ -17,8 +17,12 @@ export const Root = styled('div')({
 export const Header = styled('div')({
   display: 'flex',
   alignItems: 'center',
-  padding: '24px 12px 20px 110px',
+  height: '100px',
+  padding: '0px 0px 0px 110px',
   backgroundColor: 'gainsboro',
+  position: 'fixed',
+  width: '100%',
+  zIndex: 999
 });
 //======================================================
 export const StyledLink = styled(Link)({
@@ -41,10 +45,14 @@ export const StyledBurgerMenu = styled(BurgerMenu)({
     '.bm-item-list': {
       height: '',
     }
-  }
+  },
+  // '.bm-burger-button': {
+  //   zIndex: 10000,
+  // }
 })
 //======================================================
 export const StyledBody = styled('div')({
   display: 'flex',
-  margin: '40px',
+  margin: '100px 12px 0px 12px',
+  height: '100%',
 })

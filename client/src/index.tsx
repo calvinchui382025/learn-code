@@ -33,7 +33,7 @@ root.render(
             outerContainerId={'outer-container'}
             width={ '20%' }
             style={{ 
-              overflow: 'none' 
+              overflow: 'none',
             }}
           >
             <StyledLink to={'/'} >Home</StyledLink>

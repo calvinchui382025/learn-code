@@ -15,7 +15,7 @@ import {
   TextField, 
   Typography 
 } from '@mui/material';
-import { Header, Root } from '../../styled-components/styles';
+import { Header, Root, StyledBody } from '../../styled-components/styles';
 //======================================================
 
 //======================================================
@@ -36,49 +36,6 @@ const Row = styled('div')({
   flexDirection: 'row',
   justifyContent: 'center',
 });
-//======================================================
-const dummyData = [
-  { 
-    name: 'Houston',
-    condition: 'Thunderstorm',
-    minTemp: '70°',
-    maxTemp: '80°',
-    temp: '75°',
-    conditionCode: '1000',
-  },
-  { 
-    name: 'Austin',
-    condition: 'Clear',
-    minTemp: '60°',
-    maxTemp: '70°',
-    temp: '65°',
-    conditionCode: '1000',
-  },
-  { 
-    name: 'Dallas',
-    condition: 'Rain',
-    minTemp: '70°',
-    maxTemp: '80°',
-    temp: '75°',
-    conditionCode: '1000',
-  },
-  { 
-    name: 'San Antonio',
-    condition: 'Cloudy',
-    minTemp: '70°',
-    maxTemp: '80°',
-    temp: '75°',
-    conditionCode: '1000',
-  },
-  { 
-    name: 'New York City',
-    condition: 'Snowy',
-    minTemp: '15°',
-    maxTemp: '25°',
-    temp: '20°',
-    conditionCode: '1000',
-  },
-]
 //======================================================
 const Weather = () => {
 
@@ -128,27 +85,29 @@ const Weather = () => {
         />
         <div />
       </Header>
-      <CardContainer >
-        {
-          grid.map((row, i) => {
-            return (
-            <Row 
-              key={`${row}${i}`}
-            >
-              {
-                row.map((location:any, i: number) => {
-                  return (
-                    <WeatherCard 
-                      key={`${location}${i}`} 
-                      locationData={location} 
-                    />
-                  )
-                })
-              }
-            </Row>)
-          })
-        }
-      </CardContainer>
+      <StyledBody>
+        <CardContainer >
+          {
+            grid.map((row, i) => {
+              return (
+              <Row 
+                key={`${row}${i}`}
+              >
+                {
+                  row.map((location:any, i: number) => {
+                    return (
+                      <WeatherCard 
+                        key={`${location}${i}`} 
+                        locationData={location} 
+                      />
+                    )
+                  })
+                }
+              </Row>)
+            })
+          }
+        </CardContainer>
+      </StyledBody>
     </Root>
   )
 }
