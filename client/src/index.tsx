@@ -16,6 +16,7 @@ import {
 import Home from './features/Home/Home';
 import Weather from './features/Weather/Weather';
 import { StyledBurgerMenu, StyledLink, WhiteDivider } from './styled-components/styles';
+import { KeyBored } from './features/Keyboard/Keyboard';
 //======================================================
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -40,12 +41,15 @@ root.render(
             <WhiteDivider />
             <StyledLink to={'/Weather'} >Weather</StyledLink>
             <WhiteDivider />
+            <StyledLink to={'/Keyboard'} >Keyboard</StyledLink>
+            <WhiteDivider />
           </StyledBurgerMenu>
 
           <div id='page-wrap'>
             <Routes>
               <Route path='/' element={ <Home /> }/>
               <Route path='/Weather' element={ <Weather /> }/>
+              <Route path='/Keyboard' element={ <KeyBored /> } />
             </Routes>
           </div>
 
