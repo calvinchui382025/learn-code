@@ -26,11 +26,12 @@ export const AccordionContainer = styled('div')({
 export const FlexAccordionDetails = styled(AccordionDetails)({
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
 })
 export const ConfigContainer = styled('div')({
   display: 'flex',
-  flexDirection: 'row',
-  width: '100%',
+  // flexDirection: 'row',
+  // width: '100%',
 })
 export const ConfigColumn = styled('div')({
   display: 'flex',

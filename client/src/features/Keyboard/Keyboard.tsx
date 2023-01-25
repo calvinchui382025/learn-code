@@ -149,11 +149,13 @@ export const KeyBored = () => {
             plateColor={plateColor}
           >
             {keysetExample && keysetExample.data.length > 0 && (
-              keysetExample.data.map((row) => {
+              keysetExample.data.map((row, rowi) => {
                 return (
-                  <Row>
+                  <Row
+                    key={`${rowi}-row`}
+                  >
                     {
-                      row.map((keyData) => {
+                      row.map((keyData, i) => {
                         let keyColor = '#BBBBBB';
                         let fontColor = '#000000';
                         const { name, width, keyComponent, icon } = keyData
@@ -185,6 +187,7 @@ export const KeyBored = () => {
                               handleSingleKeyPress(name)
                               handleSetExpandedConfig(name)
                             }}
+                            key={`${i}-${rowi}-key`}
                           >
                             {keyComponent(display, keyColor, fontColor, pressed, caseBottomColor)}
                           </div>
@@ -325,7 +328,7 @@ export const KeyBored = () => {
               >
                 {backgroundImages.map((item, i) => {
                   return (
-                    <div onClick={() => {handleBackgroundImageSelected(item)}}>
+                    <div onClick={() => {handleBackgroundImageSelected(item)}} key={`${i}-image`}>
                       <img
                         src={`${item}`}
                         // height={400}
