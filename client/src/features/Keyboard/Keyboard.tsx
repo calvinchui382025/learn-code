@@ -21,7 +21,7 @@ import {
 import { alphaKeys, numericKeys } from './utils';
 import { cloneDeep } from 'lodash';
 import Carousel from 'react-material-ui-carousel'
-import { backgroundImages } from './utils';
+import { backgroundImages, keyboardComponentTranslater } from './utils';
 import { LightenDarkenColor } from 'lighten-darken-color'; 
 //======================================================
 export const KeyBored = () => {
@@ -189,7 +189,7 @@ export const KeyBored = () => {
                             }}
                             key={`${i}-${rowi}-key`}
                           >
-                            {keyComponent(display, keyColor, fontColor, pressed, caseBottomColor)}
+                            {keyboardComponentTranslater(width, display, keyColor, fontColor, pressed, caseBottomColor)}
                           </div>
                         )
                       })
