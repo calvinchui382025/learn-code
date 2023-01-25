@@ -36,6 +36,7 @@ export const ConfigColumn = styled('div')({
   // height: '100%',
   // justifyContent: 'center',
   alignItems: 'center',
+  margin: '0px 8px',
 })
 
 export const KeyboardContainer = styled('div')({
