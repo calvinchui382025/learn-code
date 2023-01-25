@@ -5,7 +5,7 @@ const standardKeyWidth = 38
 //====================================================== variable colors
 
 //======================================================
-export const KeyboardBackground = styled('body')({
+export const KeyboardBackground = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   margin: '100px 0px 0px 0px',
@@ -80,14 +80,14 @@ export const Row = styled('div')({
 })
 
 export interface BaseKeyCapProps {
-  keyCapTextColor: string;
-  mainKeysColor: string;
+  keycaptextcolor: string;
+  mainkeyscolor: string;
 }
 
 export const BaseKeyCap = styled('div')<BaseKeyCapProps>((props:any) => ({
   borderRadius: '3px',
   boxSizing: 'border-box',
-  color: props?.keyCapTextColor,
+  color: props?.keycaptextcolor,
   display: 'flex',
   fontFamily: 'system-ui, sans-serif',
   fontSize: '10px',
@@ -101,8 +101,8 @@ export const BaseKeyCap = styled('div')<BaseKeyCapProps>((props:any) => ({
   borderTop: '2px solid transparent',
   borderBottom: '6px solid transparent',
 
-  backgroundColor: props.mainKeysColor ? LightenDarkenColor(props.mainKeysColor, 20) : 'black',
-  borderColor: props.mainKeysColor ? LightenDarkenColor(props.mainKeysColor, 0) : 'black',
+  backgroundColor: props.mainkeyscolor ? LightenDarkenColor(props.mainkeyscolor, 20) : 'black',
+  borderColor: props.mainkeyscolor ? LightenDarkenColor(props.mainkeyscolor, 0) : 'black',
   boxShadow: '0 -0.125em 0 -0.063em $dark, 0 0.125em 0 -0.063em rgba(0,0,0,0.5)',
 
   '&.pressed': {
