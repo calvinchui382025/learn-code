@@ -27,7 +27,14 @@ import { LightenDarkenColor } from 'lighten-darken-color';
 export const KeyBored = () => {
   //======================================================
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
-  const [customKeyCapsConfig, setCustomKeyCapsConfig] = useState({});
+  const [customKeyCapsConfig, setCustomKeyCapsConfig] = useState({
+    'Esc': {
+      color: '#f5cb23',
+    },
+    'Enter': {
+      color: '#f5cb23',
+    },
+  });
   const [selectedBackgroundImage, setSelectedBackgroundImage] = useState('url(./images/brown-wood-table.jpeg)');
   const [pressedKey, setPressedKey] = useState<string | null>(null);
   const [expandedConfig, setExpandedConfig] = useState<string | null>(null);
@@ -64,6 +71,7 @@ export const KeyBored = () => {
         [param]: color?.hex,
       };
     }
+    console.log({ newCustomKeyCapsConfig })
     setCustomKeyCapsConfig(newCustomKeyCapsConfig)
   }
   //====================================================== alphas
