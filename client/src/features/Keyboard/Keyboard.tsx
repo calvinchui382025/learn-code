@@ -174,7 +174,7 @@ export const KeyBored = () => {
             )
           }
 
-          <Accordion>
+          <FullWidthAccordion>
             <AccordionSummary expandIcon={<ExpandMore />}>
               Alpha Keys
             </AccordionSummary>
@@ -190,9 +190,9 @@ export const KeyBored = () => {
                 </ConfigColumn>
               </ConfigContainer>
             </AccordionDetails>
-          </Accordion>
+          </FullWidthAccordion>
 
-          <Accordion>
+          <FullWidthAccordion>
           <AccordionSummary expandIcon={<ExpandMore />}>
               Numeric Keys
             </AccordionSummary>
@@ -208,9 +208,9 @@ export const KeyBored = () => {
                 </ConfigColumn>
               </ConfigContainer>
             </AccordionDetails>
-          </Accordion>
+          </FullWidthAccordion>
 
-          <Accordion>
+          <FullWidthAccordion>
           <AccordionSummary expandIcon={<ExpandMore />}>
               Modifier Keys
             </AccordionSummary>
@@ -226,7 +226,7 @@ export const KeyBored = () => {
                 </ConfigColumn>
               </ConfigContainer>
             </AccordionDetails>
-          </Accordion>
+          </FullWidthAccordion>
 
           <FullWidthAccordion>
           <AccordionSummary expandIcon={<ExpandMore />}>
