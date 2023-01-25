@@ -128,11 +128,12 @@ export const KBD625 = styled(BaseKeyCap)({
 export const KBD650 = styled(BaseKeyCap)({
   width: standardKeyWidth * 6.50,
 })
-
+//======================================================
 export const Spacer05 = styled('div')({
   width: standardKeyWidth / 2,
   height: standardKeyWidth,
   backgroundColor: shroudBottomColor,
+  transform: 'translateY(4px)',
 })
 //======================================================
 export const WhiteKeyCaps = styled('div')({
@@ -145,4 +146,5 @@ export const WhiteKeyCaps = styled('div')({
 //======================================================
 export const FullWidthAccordion = styled(Accordion)({
   width: '100%',
+  margin: '0px !important',
 })
