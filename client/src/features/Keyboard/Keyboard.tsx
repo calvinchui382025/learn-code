@@ -235,7 +235,7 @@ export const KeyBored = () => {
             </AccordionDetails>
           </FullWidthAccordion>
 
-          <FullWidthAccordion>
+          <FullWidthAccordion TransitionProps={{ unmountOnExit: true }}>
           <AccordionSummary expandIcon={<ExpandMore />}>
               Background Image
             </AccordionSummary>
