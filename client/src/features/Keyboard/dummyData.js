@@ -20,7 +20,7 @@ import {
 } from '@mui/icons-material';
 //======================================================
 export const keysetExample = {
-  name: 'GMK 65',
+  name: 'Mode65',
   alphaKeyCapColor: '#87CEEB',
   alphaFontColor: '#FFFFFF',
   modifierKeyCapColor: '',
