@@ -40,3 +40,13 @@ export const numericKeys = {
   '0': true,
 }
 //======================================================
+export const backgroundImages = [
+  './images/brown-wood-table.jpeg',
+  './images/fabric.jpg',
+  './images/wood1.jpg',
+  './images/wood2.jpg',
+  './images/wood3.jpg',
+  './images/wood4.jpg',
+  './images/wood5.jpg',
+  './images/wood6.jpg',
+]

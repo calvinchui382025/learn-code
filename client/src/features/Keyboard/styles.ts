@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { Accordion, styled } from '@mui/material';
 import { LightenDarkenColor } from 'lighten-darken-color'; 
 //====================================================== static css
 const standardKeyWidth = 38
@@ -141,4 +141,8 @@ export const WhiteKeyCaps = styled('div')({
   'border-top-color': '#ece8e4',
   'border-bottom-color': '#c9c4c4',
   boxShadow: '0 -0.125em 0 -0.063em $dark, 0 0.125em 0 -0.063em rgba(0,0,0,0.5)',
+})
+//======================================================
+export const FullWidthAccordion = styled(Accordion)({
+  width: '100%',
 })

@@ -16,20 +16,30 @@ import {
   ConfigColumn,
   KeyboardBackground,
   ConfigContainer,
-  AccordionContainer, 
+  AccordionContainer,
+  FullWidthAccordion, 
 } from './styles';
 import { alphaKeys, numericKeys } from './utils';
 import { cloneDeep } from 'lodash';
+import Carousel from 'react-material-ui-carousel'
+import { backgroundImages } from './utils';
 //======================================================
 export const KeyBored = () => {
   //======================================================
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const [customKeyCapsConfig, setCustomKeyCapsConfig] = useState({});
+  const [selectedBackgroundImage, setSelectedBackgroundImage] = useState('url(./images/brown-wood-table.jpeg)');
+  //====================================================== backgroundImage change
+  const handleBackgroundImageSelected = (image: string) => {
+    console.log({ image })
+    setSelectedBackgroundImage(`url(${image})`);
+  }
 
+
+  //====================================================== exception keys (single press)
   const handleSingleKeyPress = (name: string) => {
     setSelectedKey(name);
   }
-
   const handleUpdateSelectedCustomKeyCapColor = (color, name: string, param: string) => {
     const newCustomKeyCapsConfig = cloneDeep(customKeyCapsConfig);
     if(newCustomKeyCapsConfig[name]){
@@ -41,7 +51,6 @@ export const KeyBored = () => {
     }
     setCustomKeyCapsConfig(newCustomKeyCapsConfig)
   }
-
   //====================================================== alphas
   const [alphaKeyColor, setAlphaKeysColor] = useState('#87CEEB')
   const handleAlphaKeyColorChange = (color) => {
@@ -93,7 +102,7 @@ export const KeyBored = () => {
       <KeyboardBackground 
         style={{ 
           flexDirection: 'column',
-          backgroundImage: 'url(./images/brown-wood-table.jpeg)',
+          backgroundImage: selectedBackgroundImage,
         }}
       >
         <KeyboardContainer>
@@ -218,6 +227,32 @@ export const KeyBored = () => {
               </ConfigContainer>
             </AccordionDetails>
           </Accordion>
+
+          <FullWidthAccordion>
+          <AccordionSummary expandIcon={<ExpandMore />}>
+              Background Image
+            </AccordionSummary>
+            <AccordionDetails>
+              <Carousel
+                height={400}
+                animation='slide'
+                interval={6000}
+                indicators={false}
+              >
+                {backgroundImages.map((item, i) => {
+                  return (
+                    <div onClick={() => {handleBackgroundImageSelected(item)}}>
+                      <img
+                        src={`${item}`}
+                        // height={400}
+                        loading='lazy'
+                      />
+                    </div>
+                  )
+                })}
+              </Carousel>
+            </AccordionDetails>
+          </FullWidthAccordion>
         </AccordionContainer>
       </KeyboardBackground>
     </Root>
