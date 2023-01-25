@@ -16,6 +16,18 @@ import { alphaKeys, numericKeys } from './utils';
 //======================================================
 export const KeyBored = () => {
   //====================================================== alphas
+  const [borderConfigsOpen, setBorderConfigsOpen] = useState(false);
+  const [borderColor, setBorderColor] = useState('#FFFFFF');
+  const handleBorderColorChange = (color) => {
+    setBorderColor(color?.hex);
+    setBorderConfigsOpen(false);
+  }
+  const [topShroudConfigsOpen, setTopShroudConfigsOpen] = useState(false);
+  const [topShroudColor, setTopShroudColor] = useState('#663399');
+  const handleTopShroudColorChange = (color) => {
+    setTopShroudColor(color?.hex);
+    setTopShroudConfigsOpen(false);
+  }
   const [alphaColorKeysConfigOpen, setAlphaColorKeysConfigOpen] = useState(false);
   const [alphaKeyColor, setAlphaKeysColor] = useState('#87CEEB')
   const handleAlphaKeyColorChange = (color) => {
@@ -68,7 +80,7 @@ export const KeyBored = () => {
         }}
       >
         <KeyboardContainer>
-          <Keyboard>
+          <Keyboard borderColor={borderColor} topBorderColor={topShroudColor} shroudBottomColor={borderColor}>
             {keysetExample && keysetExample.data.length > 0 && (
               keysetExample.data.map((row) => {
                 return (
@@ -109,6 +121,32 @@ export const KeyBored = () => {
 
         </KeyboardContainer>
         <ConfigContainer>
+          <ConfigColumn>
+            {borderConfigsOpen ? 
+              <SketchPicker color={borderColor} onChange={handleBorderColorChange}/>
+                : <Button 
+                    onClick={() => setBorderConfigsOpen(true)}
+                    style={{ 
+                      backgroundColor: borderColor, 
+                      color: isDarkColor(borderColor) ? 'white' : 'black'
+                    }}
+                  >
+                    Body
+                  </Button>
+            }
+            {topShroudConfigsOpen ? 
+              <SketchPicker color={topShroudColor} onChange={handleTopShroudColorChange}/>
+                : <Button 
+                    onClick={() => setTopShroudConfigsOpen(true)}
+                    style={{ 
+                      backgroundColor: topShroudColor, 
+                      color: isDarkColor(topShroudColor) ? 'white' : 'black', 
+                    }}
+                  >
+                    Top Shroud
+                  </Button>
+            }
+          </ConfigColumn>
           <ConfigColumn>
             {alphaColorKeysConfigOpen ? 
               <SketchPicker color={alphaKeyColor} onChange={handleAlphaKeyColorChange}/>

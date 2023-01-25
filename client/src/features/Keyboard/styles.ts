@@ -3,7 +3,7 @@ import { LightenDarkenColor } from 'lighten-darken-color';
 //====================================================== static css
 const standardKeyWidth = 38
 //====================================================== variable colors
-const shroudColor = '#FFFAFA';
+const shroudColor = '#FFFF';
 const shroudTopColor = '#663399';
 const shroudBottomColor = LightenDarkenColor(shroudColor, 20);
 const plateColor = 'lightgrey';
@@ -41,21 +41,27 @@ export const KeyboardContainer = styled('div')({
   justifyContent: 'center',
 });
 
-export const Keyboard = styled('div')({
+export interface KeyboardProps {
+  borderColor: string;
+  topBorderColor: string;
+  shroudBottomColor: string;
+}
+
+export const Keyboard = styled('div')<KeyboardProps>((props:any) => ({
   display: 'flex',
   flexDirection: 'column',
   fontSize: '0',
   borderRadius: '4px',
-  border: `13px solid ${shroudColor}`,
-  borderTopColor: shroudTopColor,
-  borderBottomColor: shroudBottomColor,
+  border: `13px solid ${props?.borderColor || 'grey'}`,
+  borderTopColor: props?.topBorderColor || 'white',
+  borderBottomColor: props?.shroudBottomColor || 'grey',
   outline: '3px solid rgba(black, 0.2)',
   outlineOffset: '-1px',
   boxShadow: 
     'inset 0 1rem 1rem rgba(0,0,0, 0.5), 0 2rem 3rem -0.5rem rgba(0,0,0,0.55)',
   backgroundColor: plateColor,
   padding: '0.25rem',
-})
+}));
 
 export const Row = styled('div')({
   display: 'flex',
