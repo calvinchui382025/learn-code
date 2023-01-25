@@ -29,6 +29,7 @@ export const KeyBored = () => {
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const [customKeyCapsConfig, setCustomKeyCapsConfig] = useState({});
   const [selectedBackgroundImage, setSelectedBackgroundImage] = useState('url(./images/brown-wood-table.jpeg)');
+  const [hoveredKey, setHoveredKey] = useState<string | null>(null);
   //====================================================== backgroundImage change
   const handleBackgroundImageSelected = (image: string) => {
     console.log({ image })
@@ -137,9 +138,15 @@ export const KeyBored = () => {
                           fontColor = customKeyCapsConfig[name]?.text || fontColor;
                         }
                         const display = icon || name;
+                        const pressed = hoveredKey === name
                         return (
-                          <div onClick={() => handleSingleKeyPress(name)}>
-                            {keyComponent(display, keyColor, fontColor)}
+                          <div 
+                            onClick={() => {
+                              handleSingleKeyPress(name)
+                              setHoveredKey(name)
+                            }}
+                          >
+                            {keyComponent(display, keyColor, fontColor, pressed)}
                           </div>
                         )
                       })

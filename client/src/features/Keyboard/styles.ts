@@ -93,6 +93,10 @@ export const BaseKeyCap = styled('div')<BaseKeyCapProps>((props:any) => ({
   backgroundColor: props.mainKeysColor ? LightenDarkenColor(props.mainKeysColor, 20) : 'black',
   borderColor: props.mainKeysColor ? LightenDarkenColor(props.mainKeysColor, 0) : 'black',
   boxShadow: '0 -0.125em 0 -0.063em $dark, 0 0.125em 0 -0.063em rgba(0,0,0,0.5)',
+
+  '&.pressed': {
+    transform: 'scale(0.96,0.96) translate(0, 2px)',
+  }
 }));
 //======================================================
 export const KBD100 = styled(BaseKeyCap)({
