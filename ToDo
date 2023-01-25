@@ -4,10 +4,13 @@
 // Set up dummy keyset data
 // Modifiable modifiers
 // Modifiable numerics
-Modifiable exceptions
+
+Modifiable exceptions (if key has color or font exception)
 Modifiable shroud
 
-Set keycap typing/interface
+Need exceptions in display (IE. spacebar, caps with logos + words)
+
+Set keycap types/interface
 
 === Questions ===========================
 How to store component type in data? -> could have a better solution

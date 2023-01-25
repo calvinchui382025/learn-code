@@ -13,12 +13,35 @@ import {
   ConfigContainer, 
 } from './styles';
 import { alphaKeys, numericKeys } from './utils';
+import { cloneDeep } from 'lodash';
 //======================================================
 export const KeyBored = () => {
+  //======================================================
+  const [selectedKey, setSelectedKey] = useState<string | null>(null);
+  const [customKeyCapsConfig, setCustomKeyCapsConfig] = useState({});
+
+  const handleSingleKeyPress = (name: string) => {
+    setSelectedKey(name);
+  }
+
+  const handleUpdateSelectedCustomKeyCapColor = (color, name: string) => {
+    const newCustomKeyCapsConfig = cloneDeep(customKeyCapsConfig);
+    newCustomKeyCapsConfig[name] = {
+      color: color?.hex,
+    };
+    setCustomKeyCapsConfig(newCustomKeyCapsConfig)
+    setSelectedKey(null);
+  }
+
   //====================================================== alphas
   const [alphaColorKeysConfigOpen, setAlphaColorKeysConfigOpen] = useState(false);
   const [alphaKeyColor, setAlphaKeysColor] = useState('#87CEEB')
   const handleAlphaKeyColorChange = (color) => {
+    const newCustomKeyCapsConfig = cloneDeep(customKeyCapsConfig);
+    Object.keys(newCustomKeyCapsConfig).forEach((key) => {
+      if (alphaKeys[key.toLowerCase()]) delete newCustomKeyCapsConfig[key]
+    })
+    setCustomKeyCapsConfig(newCustomKeyCapsConfig)
     setAlphaKeysColor(color?.hex);
     setAlphaColorKeysConfigOpen(false);
   }
@@ -32,6 +55,11 @@ export const KeyBored = () => {
   const [numericKeyColorConfigOpen, setNumericKeyColorConfigOpen] = useState(false);
   const [numericKeyColor, setNumericKeyColor] = useState('#87CEEB');
   const handleNumericKeyColorChange = (color) => {
+    const newCustomKeyCapsConfig = cloneDeep(customKeyCapsConfig);
+    Object.keys(newCustomKeyCapsConfig).forEach((key) => {
+      if (numericKeys[key]) delete newCustomKeyCapsConfig[key]
+    })
+    setCustomKeyCapsConfig(newCustomKeyCapsConfig)
     setNumericKeyColor(color?.hex || '#FFFFFF');
     setNumericKeyColorConfigOpen(false);
   }
@@ -45,6 +73,11 @@ export const KeyBored = () => {
   const [modifierKeyColorConfigOpen, setModifierKeyColorConfigOpen] = useState(false);
   const [modifierKeyColor, setModifierKeyColor] = useState('#87CEEB');
   const handleModifierKeyColorChange = (color) => {
+    const newCustomKeyCapsConfig = cloneDeep(customKeyCapsConfig);
+    Object.keys(newCustomKeyCapsConfig).forEach((key) => {
+      if (!alphaKeys[key.toLowerCase()] && !numericKeys[key]) delete newCustomKeyCapsConfig[key]
+    })
+    setCustomKeyCapsConfig(newCustomKeyCapsConfig)
     setModifierKeyColor(color?.hex || '#FFFFFF');
     setModifierKeyColorConfigOpen(false);
   }
@@ -62,7 +95,6 @@ export const KeyBored = () => {
       </Header>
       <KeyboardBackground 
         style={{ 
-          // backgroundColor: 'SaddleBrown', 
           flexDirection: 'column',
           backgroundImage: 'url(./images/brown-wood-table.jpeg)',
         }}
@@ -94,11 +126,17 @@ export const KeyBored = () => {
                           keyColor = modifierKeyColor;
                           fontColor = modifierFontColor;
                         }
+                        if (customKeyCapsConfig[name] && customKeyCapsConfig[name]?.color) {
+                          keyColor = customKeyCapsConfig[name]?.color
+                        }
 
                         const display = icon || name;
                         
-                        return keyComponent(display, keyColor, fontColor)
-                        
+                        return (
+                          <div onClick={() => handleSingleKeyPress(name)}>
+                            {keyComponent(display, keyColor, fontColor)}
+                          </div>
+                        )
                       })
                     }
                   </Row>
@@ -109,6 +147,10 @@ export const KeyBored = () => {
 
         </KeyboardContainer>
         <ConfigContainer>
+          {selectedKey && <ConfigColumn>
+            <SwatchesPicker onChange={(e) => handleUpdateSelectedCustomKeyCapColor(e, selectedKey)} />
+            {/* <SwatchesPicker onChange={(e) => handleUpdateSelectedCustomKeyCapColor(e, selectedKey)} /> */}
+          </ConfigColumn>}
           <ConfigColumn>
             {alphaColorKeysConfigOpen ? 
               <SwatchesPicker color={alphaKeyColor} onChange={handleAlphaKeyColorChange}/>
