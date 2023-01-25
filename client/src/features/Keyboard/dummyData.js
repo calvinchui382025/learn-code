@@ -487,8 +487,8 @@ export const keysetExample = {
       {
         name: 'SPACER05',
         width: 'Spacer05',
-        keyComponent: (name, keyColor, fontColor, pressed ) => (
-          <Spacer05 />
+        keyComponent: (name, keyColor, fontColor, pressed, caseBottomColor ) => (
+          <Spacer05 caseBottomColor={caseBottomColor}/>
         ),
       },  
       {

@@ -1,13 +1,11 @@
 import { 
   Typography,
-  Accordion,
   AccordionSummary,
-  AccordionDetails,
 } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { Root, Header } from '../../styled-components/styles';
-import { SketchPicker  } from 'react-color'
+import { SketchPicker, CompactPicker  } from 'react-color'
 import { keysetExample } from './dummyData';
 import { 
   Keyboard, 
@@ -18,11 +16,13 @@ import {
   ConfigContainer,
   AccordionContainer,
   FullWidthAccordion, 
+  FlexAccordionDetails,
 } from './styles';
 import { alphaKeys, numericKeys } from './utils';
 import { cloneDeep } from 'lodash';
 import Carousel from 'react-material-ui-carousel'
 import { backgroundImages } from './utils';
+import { LightenDarkenColor } from 'lighten-darken-color'; 
 //======================================================
 export const KeyBored = () => {
   //======================================================
@@ -31,12 +31,14 @@ export const KeyBored = () => {
   const [selectedBackgroundImage, setSelectedBackgroundImage] = useState('url(./images/brown-wood-table.jpeg)');
   const [pressedKey, setPressedKey] = useState<string | null>(null);
   const [expandedConfig, setExpandedConfig] = useState<string | null>(null);
+  const [caseTopColor, setTopShroudColor] = useState<string>('#663399');
+  const [caseColor, setCaseColor] = useState<string>('#FFFAFA');
+  const [caseBottomColor, setCaseBottomColor] = useState<string>(String(LightenDarkenColor(caseColor, 20)));
+  const [plateColor, setPlateColor] = useState<string>('#D3D3D3');
   //====================================================== accordion logic
   const handleSetExpandedConfig = (panel: string) => {
     if(panel !== expandedConfig) setExpandedConfig(panel)
     else setExpandedConfig(null)
-
-
   }
   //====================================================== backgroundImage change
   const handleBackgroundImageSelected = (image: string) => {
@@ -106,6 +108,19 @@ export const KeyBored = () => {
   const handleModifierFontColorChange = (color) => {
     setModifierFontColor(color?.hex || '#FFFFFF');
   }
+  //======================================================
+  const handleCaseTopColorChange = (color) => {
+    setTopShroudColor(color?.hex);
+  }
+  const handleCaseColor = (color) => {
+    setCaseColor(color?.hex);
+  }
+  const handleCaseBottomColorChange = (color) => {
+    setCaseBottomColor(color?.hex);
+  }
+  const handlePlateColorChange = (color) => {
+    setPlateColor(color?.hex)
+  }
   //====================================================== 
   return (
     <Root>
@@ -119,7 +134,12 @@ export const KeyBored = () => {
         }}
       >
         <KeyboardContainer>
-          <Keyboard>
+          <Keyboard 
+            caseTopColor={caseTopColor} 
+            caseColor={caseColor}
+            caseBottomColor={caseBottomColor}
+            plateColor={plateColor}
+          >
             {keysetExample && keysetExample.data.length > 0 && (
               keysetExample.data.map((row) => {
                 return (
@@ -158,7 +178,7 @@ export const KeyBored = () => {
                               handleSetExpandedConfig(name)
                             }}
                           >
-                            {keyComponent(display, keyColor, fontColor, pressed)}
+                            {keyComponent(display, keyColor, fontColor, pressed, caseBottomColor)}
                           </div>
                         )
                       })
@@ -170,7 +190,7 @@ export const KeyBored = () => {
           </Keyboard>
 
         </KeyboardContainer>
-
+        {/* //====================================================== */}
         <AccordionContainer>
           {selectedKey && expandedConfig === selectedKey && (
             <FullWidthAccordion 
@@ -184,7 +204,7 @@ export const KeyBored = () => {
               <AccordionSummary expandIcon={<ExpandMore />}>
                 <Typography>Selected Key {selectedKey}</Typography>
               </AccordionSummary>
-              <AccordionDetails>
+              <FlexAccordionDetails>
                 <ConfigContainer>
                   <ConfigColumn>
                     <Typography>Key Cap Color</Typography>
@@ -195,7 +215,7 @@ export const KeyBored = () => {
                     <SketchPicker color={customKeyCapsConfig[selectedKey]?.text} onChange={(e) => handleUpdateSelectedCustomKeyCapColor(e, selectedKey, 'text')} />
                   </ConfigColumn>
                 </ConfigContainer>
-              </AccordionDetails>
+              </FlexAccordionDetails>
             </FullWidthAccordion>
             )
           }
@@ -204,7 +224,7 @@ export const KeyBored = () => {
             <AccordionSummary expandIcon={<ExpandMore />}>
               Alpha Keys
             </AccordionSummary>
-            <AccordionDetails>
+            <FlexAccordionDetails>
               <ConfigContainer>
                 <ConfigColumn>
                   <Typography>Key Cap Color</Typography>
@@ -215,14 +235,14 @@ export const KeyBored = () => {
                   <SketchPicker color={alphaFontColor} onChange={handleAlphaFontColorChange}/>
                 </ConfigColumn>
               </ConfigContainer>
-            </AccordionDetails>
+            </FlexAccordionDetails>
           </FullWidthAccordion>
 
           <FullWidthAccordion expanded={expandedConfig === 'numerics'} onChange={() => handleSetExpandedConfig('numerics')}>
           <AccordionSummary expandIcon={<ExpandMore />}>
               Numeric Keys
             </AccordionSummary>
-            <AccordionDetails>
+            <FlexAccordionDetails>
               <ConfigContainer>
                 <ConfigColumn>
                   <Typography>Key Cap Color</Typography>
@@ -233,14 +253,14 @@ export const KeyBored = () => {
                   <SketchPicker color={numericFontColor} onChange={handleNumericFontColorChange}/>
                 </ConfigColumn>
               </ConfigContainer>
-            </AccordionDetails>
+            </FlexAccordionDetails>
           </FullWidthAccordion>
 
           <FullWidthAccordion expanded={expandedConfig === 'modifiers'} onChange={() => handleSetExpandedConfig('modifiers')}>
           <AccordionSummary expandIcon={<ExpandMore />}>
               Modifier Keys
             </AccordionSummary>
-            <AccordionDetails>
+            <FlexAccordionDetails>
               <ConfigContainer>
                 <ConfigColumn>
                   <Typography>Key Cap Color</Typography>
@@ -251,14 +271,44 @@ export const KeyBored = () => {
                   <SketchPicker color={modifierFontColor} onChange={handleModifierFontColorChange}/>
                 </ConfigColumn>
               </ConfigContainer>
-            </AccordionDetails>
+            </FlexAccordionDetails>
+          </FullWidthAccordion>
+
+          <FullWidthAccordion expanded={expandedConfig === 'shroud'} onChange={() => handleSetExpandedConfig('shroud')}>
+          <AccordionSummary expandIcon={<ExpandMore />}>
+              Case
+            </AccordionSummary>
+            <FlexAccordionDetails>
+              <ConfigContainer>
+                <ConfigColumn>
+                  <Typography>Case Top Color</Typography>
+                  <CompactPicker color={caseTopColor} onChange={handleCaseTopColorChange}/>
+                </ConfigColumn>
+                <ConfigColumn>
+                  <Typography>Case Side Color</Typography>
+                  <CompactPicker color={caseColor} onChange={handleCaseColor}/>
+                </ConfigColumn>
+                
+              </ConfigContainer>
+              <ConfigContainer>
+                <ConfigColumn>
+                  <Typography>Case Bottom Color</Typography>
+                  <CompactPicker color={caseBottomColor} onChange={handleCaseBottomColorChange}/>
+                </ConfigColumn>
+                <ConfigColumn>
+                  <Typography>Plate Color</Typography>
+                  <CompactPicker color={plateColor} onChange={handlePlateColorChange}/>
+                </ConfigColumn>
+                
+              </ConfigContainer>
+            </FlexAccordionDetails>
           </FullWidthAccordion>
 
           <FullWidthAccordion TransitionProps={{ unmountOnExit: true }} expanded={expandedConfig === 'background'} onChange={() => handleSetExpandedConfig('background')}>
           <AccordionSummary expandIcon={<ExpandMore />}>
               Background Image
             </AccordionSummary>
-            <AccordionDetails>
+            <FlexAccordionDetails>
               <Carousel
                 height={400}
                 animation='slide'
@@ -277,9 +327,10 @@ export const KeyBored = () => {
                   )
                 })}
               </Carousel>
-            </AccordionDetails>
+            </FlexAccordionDetails>
           </FullWidthAccordion>
         </AccordionContainer>
+        {/* //====================================================== */}
       </KeyboardBackground>
     </Root>
   )

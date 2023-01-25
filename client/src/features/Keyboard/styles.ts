@@ -1,12 +1,9 @@
-import { Accordion, styled } from '@mui/material';
+import { Accordion, AccordionDetails, styled } from '@mui/material';
 import { LightenDarkenColor } from 'lighten-darken-color'; 
 //====================================================== static css
 const standardKeyWidth = 38
 //====================================================== variable colors
-const shroudColor = '#FFFAFA';
-const shroudTopColor = '#663399';
-const shroudBottomColor = LightenDarkenColor(shroudColor, 20);
-const plateColor = 'lightgrey';
+
 //======================================================
 export const KeyboardBackground = styled('body')({
   display: 'flex',
@@ -26,9 +23,14 @@ export const AccordionContainer = styled('div')({
   borderRadius: '12px',
   overflow: 'hidden'
 });
+export const FlexAccordionDetails = styled(AccordionDetails)({
+  display: 'flex',
+  flexDirection: 'column',
+})
 export const ConfigContainer = styled('div')({
   display: 'flex',
   flexDirection: 'row',
+  width: '100%',
 })
 export const ConfigColumn = styled('div')({
   display: 'flex',
@@ -36,7 +38,7 @@ export const ConfigColumn = styled('div')({
   // height: '100%',
   // justifyContent: 'center',
   alignItems: 'center',
-  margin: '0px 8px',
+  margin: '4px 8px',
 })
 
 export const KeyboardContainer = styled('div')({
@@ -48,21 +50,28 @@ export const KeyboardContainer = styled('div')({
   justifyContent: 'center',
 });
 
-export const Keyboard = styled('div')({
+export interface KeyboardProps {
+  caseTopColor: string,
+  caseColor: string,
+  caseBottomColor: string,
+  plateColor: string,
+}
+
+export const Keyboard = styled('div')<KeyboardProps>(({caseTopColor, caseColor, caseBottomColor, plateColor}) => ({
   display: 'flex',
   flexDirection: 'column',
   fontSize: '0',
   borderRadius: '4px',
-  border: `13px solid ${shroudColor}`,
-  borderTopColor: shroudTopColor,
-  borderBottomColor: shroudBottomColor,
+  border: `13px solid ${caseColor}`,
+  borderTopColor: caseTopColor,
+  borderBottomColor: caseBottomColor,
   outline: '3px solid rgba(black, 0.2)',
   outlineOffset: '-1px',
   boxShadow: 
     'inset 0 1rem 1rem rgba(0,0,0, 0.5), 0 2rem 3rem -0.5rem rgba(0,0,0,0.55)',
   backgroundColor: plateColor,
   padding: '0.25rem',
-})
+}));
 
 export const Row = styled('div')({
   display: 'flex',
@@ -134,12 +143,16 @@ export const KBD650 = styled(BaseKeyCap)({
   width: standardKeyWidth * 6.50,
 })
 //======================================================
-export const Spacer05 = styled('div')({
+export interface SpacerProps {
+  caseBottomColor: string,
+}
+
+export const Spacer05 = styled('div')<SpacerProps>(({ caseBottomColor }) => ({
   width: standardKeyWidth / 2,
   height: standardKeyWidth,
-  backgroundColor: shroudBottomColor,
+  backgroundColor: caseBottomColor,
   transform: 'translateY(4px)',
-})
+}));
 //======================================================
 export const WhiteKeyCaps = styled('div')({
   backgroundColor: '#e9e8e6',
