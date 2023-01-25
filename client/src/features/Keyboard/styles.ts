@@ -15,26 +15,32 @@ export const KeyboardBackground = styled('body')({
   height: '100%',
   alignItems: 'center',
 });
-export const ConfigContainer = styled('div')({
+export const AccordionContainer = styled('div')({
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'space-evenly',
-  minHeight: '200px',
-  width: '80%',
+  // justifyContent: 'space-evenly',
+  // minHeight: '200px',
+  // width: '80%',
   backdropFilter: 'blur(6px) saturate(70%)',
   borderRadius: '12px',
   overflow: 'hidden'
 });
+export const ConfigContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+})
 export const ConfigColumn = styled('div')({
   display: 'flex',
   flexDirection: 'column',
-  height: '100%',
-  justifyContent: 'space-evenly'
+  // height: '100%',
+  // justifyContent: 'center',
+  alignItems: 'center',
 })
 
 export const KeyboardContainer = styled('div')({
-  height: '50%',
+  // height: '50%',
+  minHeight: '400px',
   width: '100%',
   display: 'flex',
   alignItems: 'center',
