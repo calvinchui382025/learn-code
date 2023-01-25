@@ -2,7 +2,7 @@ import { Button, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Root, Header } from '../../styled-components/styles';
 import isDarkColor from 'is-dark-color'
-import { SwatchesPicker  } from 'react-color'
+import { SketchPicker  } from 'react-color'
 import { keysetExample } from './dummyData';
 import { 
   Keyboard, 
@@ -111,7 +111,7 @@ export const KeyBored = () => {
         <ConfigContainer>
           <ConfigColumn>
             {alphaColorKeysConfigOpen ? 
-              <SwatchesPicker color={alphaKeyColor} onChange={handleAlphaKeyColorChange}/>
+              <SketchPicker color={alphaKeyColor} onChange={handleAlphaKeyColorChange}/>
                 : <Button 
                     onClick={() => setAlphaColorKeysConfigOpen(true)}
                     style={{ 
@@ -123,7 +123,7 @@ export const KeyBored = () => {
                   </Button>
             }
             {alphaFontColorConfigOpen ? 
-              <SwatchesPicker color={alphaFontColor} onChange={handleAlphaFontColorChange}/>
+              <SketchPicker color={alphaFontColor} onChange={handleAlphaFontColorChange}/>
                 : <Button 
                     onClick={() => setAlphaFontColorConfigOpen(true)}
                     style={{ 
@@ -137,7 +137,7 @@ export const KeyBored = () => {
           </ConfigColumn>
           <ConfigColumn>
             {numericKeyColorConfigOpen ? 
-              <SwatchesPicker color={numericKeyColor} onChange={handleNumericKeyColorChange}/>
+              <SketchPicker color={numericKeyColor} onChange={handleNumericKeyColorChange}/>
                 : <Button 
                     onClick={() => setNumericKeyColorConfigOpen(true)}
                     style={{ 
@@ -149,7 +149,7 @@ export const KeyBored = () => {
                   </Button>
             }
             {numericFontColorConfigOpen ? 
-              <SwatchesPicker color={numericFontColor} onChange={handleNumericFontColorChange}/>
+              <SketchPicker color={numericFontColor} onChange={handleNumericFontColorChange}/>
                 : <Button 
                     onClick={() => setNumericFontColorConfigOpen(true)}
                     style={{ 
@@ -163,7 +163,7 @@ export const KeyBored = () => {
           </ConfigColumn>
           <ConfigColumn>
             {modifierKeyColorConfigOpen ? 
-              <SwatchesPicker color={modifierKeyColor} onChange={handleModifierKeyColorChange}/>
+              <SketchPicker color={modifierKeyColor} onChange={handleModifierKeyColorChange}/>
                 : <Button 
                     onClick={() => setModifierKeyColorConfigOpen(true)}
                     style={{ 
@@ -175,7 +175,7 @@ export const KeyBored = () => {
                   </Button>
             }
             {modifierFontColorConfigOpen ? 
-              <SwatchesPicker color={modifierFontColor} onChange={handleModifierFontColorChange}/>
+              <SketchPicker color={modifierFontColor} onChange={handleModifierFontColorChange}/>
                 : <Button 
                     onClick={() => setModifierFontColorConfigOpen(true)}
                     style={{ 
