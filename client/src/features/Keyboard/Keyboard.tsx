@@ -29,17 +29,29 @@ export const KeyBored = () => {
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const [customKeyCapsConfig, setCustomKeyCapsConfig] = useState({});
   const [selectedBackgroundImage, setSelectedBackgroundImage] = useState('url(./images/brown-wood-table.jpeg)');
-  const [hoveredKey, setHoveredKey] = useState<string | null>(null);
+  const [pressedKey, setPressedKey] = useState<string | null>(null);
+  const [expandedConfig, setExpandedConfig] = useState<string | null>(null);
+  //====================================================== accordion logic
+  const handleSetExpandedConfig = (panel: string) => {
+    if(panel !== expandedConfig) setExpandedConfig(panel)
+    else setExpandedConfig(null)
+
+
+  }
   //====================================================== backgroundImage change
   const handleBackgroundImageSelected = (image: string) => {
-    console.log({ image })
     setSelectedBackgroundImage(`url(${image})`);
   }
-
-
   //====================================================== exception keys (single press)
   const handleSingleKeyPress = (name: string) => {
-    setSelectedKey(name);
+    if(selectedKey === name) {
+      setSelectedKey(null);
+      setPressedKey(null)
+    }
+    else {
+      setSelectedKey(name);
+      setPressedKey(name);
+    }
   }
   const handleUpdateSelectedCustomKeyCapColor = (color, name: string, param: string) => {
     const newCustomKeyCapsConfig = cloneDeep(customKeyCapsConfig);
@@ -138,12 +150,12 @@ export const KeyBored = () => {
                           fontColor = customKeyCapsConfig[name]?.text || fontColor;
                         }
                         const display = icon || name;
-                        const pressed = hoveredKey === name
+                        const pressed = pressedKey === name
                         return (
                           <div 
                             onClick={() => {
                               handleSingleKeyPress(name)
-                              setHoveredKey(name)
+                              handleSetExpandedConfig(name)
                             }}
                           >
                             {keyComponent(display, keyColor, fontColor, pressed)}
@@ -160,8 +172,15 @@ export const KeyBored = () => {
         </KeyboardContainer>
 
         <AccordionContainer>
-          {selectedKey && (
-            <Accordion expanded={!!selectedKey} onChange={() => setSelectedKey(null)}>
+          {selectedKey && expandedConfig === selectedKey && (
+            <FullWidthAccordion 
+              // expanded={!!selectedKey} 
+              // expanded={expandedConfig === selectedKey}
+              expanded={true}
+              onChange={() => {
+                setSelectedKey(null)
+              }}
+            >
               <AccordionSummary expandIcon={<ExpandMore />}>
                 <Typography>Selected Key {selectedKey}</Typography>
               </AccordionSummary>
@@ -177,11 +196,11 @@ export const KeyBored = () => {
                   </ConfigColumn>
                 </ConfigContainer>
               </AccordionDetails>
-            </Accordion>
+            </FullWidthAccordion>
             )
           }
 
-          <FullWidthAccordion>
+          <FullWidthAccordion expanded={expandedConfig === 'alphas'} onChange={() => handleSetExpandedConfig('alphas')}>
             <AccordionSummary expandIcon={<ExpandMore />}>
               Alpha Keys
             </AccordionSummary>
@@ -199,7 +218,7 @@ export const KeyBored = () => {
             </AccordionDetails>
           </FullWidthAccordion>
 
-          <FullWidthAccordion>
+          <FullWidthAccordion expanded={expandedConfig === 'numerics'} onChange={() => handleSetExpandedConfig('numerics')}>
           <AccordionSummary expandIcon={<ExpandMore />}>
               Numeric Keys
             </AccordionSummary>
@@ -217,7 +236,7 @@ export const KeyBored = () => {
             </AccordionDetails>
           </FullWidthAccordion>
 
-          <FullWidthAccordion>
+          <FullWidthAccordion expanded={expandedConfig === 'modifiers'} onChange={() => handleSetExpandedConfig('modifiers')}>
           <AccordionSummary expandIcon={<ExpandMore />}>
               Modifier Keys
             </AccordionSummary>
@@ -235,7 +254,7 @@ export const KeyBored = () => {
             </AccordionDetails>
           </FullWidthAccordion>
 
-          <FullWidthAccordion TransitionProps={{ unmountOnExit: true }}>
+          <FullWidthAccordion TransitionProps={{ unmountOnExit: true }} expanded={expandedConfig === 'background'} onChange={() => handleSetExpandedConfig('background')}>
           <AccordionSummary expandIcon={<ExpandMore />}>
               Background Image
             </AccordionSummary>
