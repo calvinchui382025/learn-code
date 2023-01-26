@@ -3,10 +3,10 @@ import {
   AccordionSummary,
 } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Root, Header } from '../../styled-components/styles';
-import { SketchPicker, CompactPicker  } from 'react-color'
-import { keysetExample } from './dummyData';
+import { SketchPicker, CompactPicker, ColorResult  } from 'react-color'
+import { Mode65, TOFU60ANSI } from './dummyData';
 import { 
   Keyboard, 
   KeyboardContainer, 
@@ -26,22 +26,16 @@ import { LightenDarkenColor } from 'lighten-darken-color';
 //======================================================
 export const KeyBored = () => {
   //======================================================
+  const [keyboardData, setKeyboardData] = useState<any>();
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
-  const [customKeyCapsConfig, setCustomKeyCapsConfig] = useState({
-    'Esc': {
-      color: '#f5cb23',
-    },
-    'Enter': {
-      color: '#f5cb23',
-    },
-  });
+  const [customKeyCapsConfig, setCustomKeyCapsConfig] = useState({});
   const [selectedBackgroundImage, setSelectedBackgroundImage] = useState('url(./images/brown-wood-table.jpeg)');
   const [pressedKey, setPressedKey] = useState<string | null>(null);
   const [expandedConfig, setExpandedConfig] = useState<string | null>(null);
-  const [caseTopColor, setTopShroudColor] = useState<string>('#663399');
-  const [caseColor, setCaseColor] = useState<string>('#FFFAFA');
+  const [caseTopColor, setCaseTopColor] = useState<string>('#808080');
+  const [caseColor, setCaseColor] = useState<string>('#808080');
   const [caseBottomColor, setCaseBottomColor] = useState<string>(String(LightenDarkenColor(caseColor, 20)));
-  const [plateColor, setPlateColor] = useState<string>('#D3D3D3');
+  const [plateColor, setPlateColor] = useState<string>('#696969');
   //====================================================== accordion logic
   const handleSetExpandedConfig = (panel: string) => {
     if(panel !== expandedConfig) setExpandedConfig(panel)
@@ -62,7 +56,7 @@ export const KeyBored = () => {
       setPressedKey(name);
     }
   }
-  const handleUpdateSelectedCustomKeyCapColor = (color, name: string, param: string) => {
+  const handleUpdateSelectedCustomKeyCapColor = (color: ColorResult, name: string, param: string) => {
     const newCustomKeyCapsConfig = cloneDeep(customKeyCapsConfig);
     if(newCustomKeyCapsConfig[name]){
       newCustomKeyCapsConfig[name][param] = color?.hex;
@@ -75,8 +69,8 @@ export const KeyBored = () => {
     setCustomKeyCapsConfig(newCustomKeyCapsConfig)
   }
   //====================================================== alphas
-  const [alphaKeyColor, setAlphaKeysColor] = useState('#87CEEB')
-  const handleAlphaKeyColorChange = (color) => {
+  const [alphaKeyColor, setAlphaKeysColor] = useState('#808080')
+  const handleAlphaKeyColorChange = (color: { hex: React.SetStateAction<string>; }) => {
     const newCustomKeyCapsConfig = cloneDeep(customKeyCapsConfig);
     Object.keys(newCustomKeyCapsConfig).forEach((key) => {
       if (alphaKeys[key.toLowerCase()]) delete newCustomKeyCapsConfig[key]
@@ -85,12 +79,12 @@ export const KeyBored = () => {
     setAlphaKeysColor(color?.hex);
   }
   const [alphaFontColor, setAlphaFontColor] = useState('#FFFFFF');
-  const handleAlphaFontColorChange = (color) => {
+  const handleAlphaFontColorChange = (color: { hex: any; }) => {
     setAlphaFontColor(color?.hex || '#FFFFFF');
   }
   //====================================================== numerics
-  const [numericKeyColor, setNumericKeyColor] = useState('#87CEEB');
-  const handleNumericKeyColorChange = (color) => {
+  const [numericKeyColor, setNumericKeyColor] = useState('#808080');
+  const handleNumericKeyColorChange = (color: { hex: any; }) => {
     const newCustomKeyCapsConfig = cloneDeep(customKeyCapsConfig);
     Object.keys(newCustomKeyCapsConfig).forEach((key) => {
       if (numericKeys[key]) delete newCustomKeyCapsConfig[key]
@@ -99,12 +93,12 @@ export const KeyBored = () => {
     setNumericKeyColor(color?.hex || '#FFFFFF');
   }
   const [numericFontColor, setNumericFontColor] = useState('#FFFFFF');
-  const handleNumericFontColorChange = (color) => {
+  const handleNumericFontColorChange = (color: { hex: any; }) => {
     setNumericFontColor(color?.hex || '#FFFFFF');
   }
   //====================================================== modifiers
-  const [modifierKeyColor, setModifierKeyColor] = useState('#87CEEB');
-  const handleModifierKeyColorChange = (color) => {
+  const [modifierKeyColor, setModifierKeyColor] = useState('#808080');
+  const handleModifierKeyColorChange = (color: { hex: any; }) => {
     const newCustomKeyCapsConfig = cloneDeep(customKeyCapsConfig);
     Object.keys(newCustomKeyCapsConfig).forEach((key) => {
       if (!alphaKeys[key.toLowerCase()] && !numericKeys[key]) delete newCustomKeyCapsConfig[key]
@@ -113,22 +107,58 @@ export const KeyBored = () => {
     setModifierKeyColor(color?.hex || '#FFFFFF');
   }
   const [modifierFontColor, setModifierFontColor] = useState('#FFFFFF');
-  const handleModifierFontColorChange = (color) => {
+  const handleModifierFontColorChange = (color: { hex: any; }) => {
     setModifierFontColor(color?.hex || '#FFFFFF');
   }
   //======================================================
-  const handleCaseTopColorChange = (color) => {
-    setTopShroudColor(color?.hex);
+  const handleCaseTopColorChange = (color: { hex: React.SetStateAction<string>; }) => {
+    setCaseTopColor(color?.hex);
   }
-  const handleCaseColor = (color) => {
+  const handleCaseColor = (color: { hex: React.SetStateAction<string>; }) => {
     setCaseColor(color?.hex);
   }
-  const handleCaseBottomColorChange = (color) => {
+  const handleCaseBottomColorChange = (color: { hex: React.SetStateAction<string>; }) => {
     setCaseBottomColor(color?.hex);
   }
-  const handlePlateColorChange = (color) => {
+  const handlePlateColorChange = (color: { hex: React.SetStateAction<string>; }) => {
     setPlateColor(color?.hex)
   }
+  //======================================================
+  //====================================================== handle keyboard default logic
+  const handleSetKeyboard = (keyboard: any) => {
+    const { defaults } = keyboard;
+    const { 
+      defaultAlphaKeyColor,
+      defaultAlphaFontColor,
+      defaultNumericKeyColor,
+      defaultNumericFontColor,
+      defaultModifierKeyColor,
+      defaultModifierFontColor,
+      defaultCaseTopColor,
+      defaultCaseColor,
+      defaultCaseBottomColor,
+      defaultCustomKeyCapsConfig, 
+      defaultPlateColor,
+  } = defaults;
+    setAlphaKeysColor(defaultAlphaKeyColor);
+    setAlphaFontColor(defaultAlphaFontColor);
+    setNumericKeyColor(defaultNumericKeyColor);
+    setNumericFontColor(defaultNumericFontColor);
+    setModifierKeyColor(defaultModifierKeyColor);
+    setModifierFontColor(defaultModifierFontColor);
+    setCaseTopColor(defaultCaseTopColor);
+    setCaseColor(defaultCaseColor);
+    setCaseBottomColor(defaultCaseBottomColor);
+    setPlateColor(defaultPlateColor);
+    setCustomKeyCapsConfig(defaultCustomKeyCapsConfig);
+    
+
+    setKeyboardData(keyboard);
+  }
+  useEffect(() => {
+    handleSetKeyboard(Mode65);
+    // handleSetKeyboard(TOFU60ANSI);
+  }, [])
   //====================================================== 
   return (
     <Root>
@@ -148,17 +178,17 @@ export const KeyBored = () => {
             caseBottomColor={caseBottomColor}
             plateColor={plateColor}
           >
-            {keysetExample && keysetExample.data.length > 0 && (
-              keysetExample.data.map((row, rowi) => {
+            {keyboardData && keyboardData.data.length > 0 && (
+              keyboardData.data.map((row: any[], rowi: any) => {
                 return (
                   <Row
                     key={`${rowi}-row`}
                   >
                     {
-                      row.map((keyData, i) => {
+                      row.map((keyData: { name: any; width: any; keyComponent: any; icon: any; }, i: any) => {
                         let keyColor = '#BBBBBB';
                         let fontColor = '#000000';
-                        const { name, width, keyComponent, icon } = keyData
+                        const { name, width, icon } = keyData
                         const isAlphaKey = alphaKeys[name.toLowerCase()];
                         const isNumericKey = numericKeys[name];
                         const isModifierKey = !isAlphaKey && !isNumericKey;
