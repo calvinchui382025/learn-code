@@ -18,6 +18,7 @@ import {
   AccordionContainer,
   FullWidthAccordion, 
   FlexAccordionDetails,
+  ImageCarousel,
 } from './styles';
 import { alphaKeys, numericKeys } from './utils';
 import { cloneDeep } from 'lodash';
@@ -381,16 +382,17 @@ export const KeyBored = () => {
             </FlexAccordionDetails>
           </FullWidthAccordion>
 
-          <FullWidthAccordion TransitionProps={{ unmountOnExit: true }} expanded={expandedConfig === 'background'} onChange={() => handleSetExpandedConfig('background')}>
+          <FullWidthAccordion 
+            TransitionProps={{ unmountOnExit: true }} 
+            expanded={expandedConfig === 'background'} 
+            onChange={() => handleSetExpandedConfig('background')}
+          >
           <AccordionSummary expandIcon={<ExpandMore />}>
               Background Image
             </AccordionSummary>
             <FlexAccordionDetails>
-              <Carousel
-                // height={400}
+              <ImageCarousel
                 animation='slide'
-                interval={5000}
-                // indicators={false}
                 autoPlay={false}
               >
                 {backgroundImages.map((item, i) => {
@@ -398,13 +400,13 @@ export const KeyBored = () => {
                     <div onClick={() => {handleBackgroundImageSelected(item)}} key={`${i}-image`}>
                       <img
                         src={`${item}`}
-                        // height={400}
+                        height={300}
                         loading='lazy'
                       />
                     </div>
                   )
                 })}
-              </Carousel>
+              </ImageCarousel>
             </FlexAccordionDetails>
           </FullWidthAccordion>
         </AccordionContainer>

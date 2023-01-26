@@ -1,3 +1,4 @@
+import Carousel from 'react-material-ui-carousel';
 import { Accordion, AccordionDetails, styled } from '@mui/material';
 import { LightenDarkenColor } from 'lighten-darken-color'; 
 //====================================================== static css
@@ -166,4 +167,7 @@ export const WhiteKeyCaps = styled('div')({
 export const FullWidthAccordion = styled(Accordion)({
   width: '100%',
   margin: '0px !important',
+})
+export const ImageCarousel = styled(Carousel)({
+  width: '400px',
 })
