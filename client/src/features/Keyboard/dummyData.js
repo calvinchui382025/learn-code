@@ -6,7 +6,7 @@ import {
 } from '@mui/icons-material';
 //======================================================
 export const Mode65 = {
-  name: 'Mode65',
+  name: 'Mode 65',
   defaults: {
     defaultAlphaKeyColor: '#87CEEB',
     defaultAlphaFontColor: '#FFFFFF',
@@ -318,7 +318,7 @@ export const Mode65 = {
 }
 //======================================================
 export const TOFU60ANSI = {
-  name: 'TOFU60ANSI',
+  name: 'TOFU 60',
   defaults: {
     defaultAlphaKeyColor: '#FFE5DC',
     defaultAlphaFontColor: '#000000',

@@ -1,9 +1,8 @@
 import { 
   Typography,
   AccordionSummary,
-  IconButton,
 } from '@mui/material';
-import { ExpandMore, NavigateBefore, NavigateNext } from '@mui/icons-material';
+import { ExpandMore, ArrowRight, ArrowLeft } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react';
 import { Root, Header } from '../../styled-components/styles';
 import { SketchPicker, CompactPicker, ColorResult  } from 'react-color'
@@ -19,10 +18,10 @@ import {
   FullWidthAccordion, 
   FlexAccordionDetails,
   ImageCarousel,
+  KeyboardSwitcherButton,
 } from './styles';
 import { alphaKeys, numericKeys } from './utils';
 import { cloneDeep } from 'lodash';
-import Carousel from 'react-material-ui-carousel'
 import { backgroundImages, keyboardComponentTranslater } from './utils';
 import { LightenDarkenColor } from 'lighten-darken-color'; 
 //======================================================
@@ -201,9 +200,9 @@ export const KeyBored = () => {
       >
         <KeyboardContainer>
 
-          <IconButton onClick={handlePreviousKeyboard}>
-            <NavigateBefore />
-          </IconButton>
+          <KeyboardSwitcherButton onClick={handlePreviousKeyboard}>
+            <ArrowLeft fontSize='large'/>
+          </KeyboardSwitcherButton>
 
           <Keyboard 
             caseTopColor={caseTopColor} 
@@ -263,9 +262,9 @@ export const KeyBored = () => {
             )}
           </Keyboard>
 
-          <IconButton onClick={handleNextKeyboard}>
-            <NavigateNext />
-          </IconButton>
+          <KeyboardSwitcherButton onClick={handleNextKeyboard}>
+            <ArrowRight fontSize='large'/>
+          </KeyboardSwitcherButton>
 
         </KeyboardContainer>
         {/* //====================================================== */}

@@ -1,5 +1,5 @@
 import Carousel from 'react-material-ui-carousel';
-import { Accordion, AccordionDetails, styled } from '@mui/material';
+import { Accordion, AccordionDetails, IconButton, styled } from '@mui/material';
 import { LightenDarkenColor } from 'lighten-darken-color'; 
 //====================================================== static css
 const standardKeyWidth = 38
@@ -74,6 +74,11 @@ export const Keyboard = styled('div')<KeyboardProps>(({caseTopColor, caseColor, 
   backgroundColor: plateColor,
   padding: '0.25rem',
 }));
+
+export const KeyboardSwitcherButton = styled(IconButton)({
+  margin: '8px',
+  backdropFilter: 'blur(4px) saturate(70%)',
+})
 
 export const Row = styled('div')({
   display: 'flex',
