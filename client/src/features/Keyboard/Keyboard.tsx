@@ -299,7 +299,7 @@ export const KeyBored = () => {
 
           <FullWidthAccordion expanded={expandedConfig === 'alphas'} onChange={() => handleSetExpandedConfig('alphas')}>
             <AccordionSummary expandIcon={<ExpandMore />}>
-              Alpha Keys
+              <Typography variant='h6'>Alpha Keys</Typography>
             </AccordionSummary>
             <FlexAccordionDetails>
               <ConfigContainer>
@@ -317,7 +317,7 @@ export const KeyBored = () => {
 
           <FullWidthAccordion expanded={expandedConfig === 'numerics'} onChange={() => handleSetExpandedConfig('numerics')}>
           <AccordionSummary expandIcon={<ExpandMore />}>
-              Numeric Keys
+            <Typography variant='h6'>Numeric Keys</Typography>
             </AccordionSummary>
             <FlexAccordionDetails>
               <ConfigContainer>
@@ -335,7 +335,7 @@ export const KeyBored = () => {
 
           <FullWidthAccordion expanded={expandedConfig === 'modifiers'} onChange={() => handleSetExpandedConfig('modifiers')}>
           <AccordionSummary expandIcon={<ExpandMore />}>
-              Modifier Keys
+            <Typography variant='h6'>Modifier Keys</Typography>
             </AccordionSummary>
             <FlexAccordionDetails>
               <ConfigContainer>
@@ -353,7 +353,7 @@ export const KeyBored = () => {
 
           <FullWidthAccordion expanded={expandedConfig === 'shroud'} onChange={() => handleSetExpandedConfig('shroud')}>
           <AccordionSummary expandIcon={<ExpandMore />}>
-              Case
+            <Typography variant='h6'>Case</Typography>
             </AccordionSummary>
             <FlexAccordionDetails>
               <ConfigContainer>
@@ -387,7 +387,7 @@ export const KeyBored = () => {
             onChange={() => handleSetExpandedConfig('background')}
           >
           <AccordionSummary expandIcon={<ExpandMore />}>
-              Background Image
+            <Typography variant='h6'>Background Image</Typography>
             </AccordionSummary>
             <FlexAccordionDetails>
               <ImageCarousel
