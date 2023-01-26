@@ -1,8 +1,9 @@
 import { 
   Typography,
   AccordionSummary,
+  IconButton,
 } from '@mui/material';
-import { ExpandMore } from '@mui/icons-material';
+import { ExpandMore, NavigateBefore, NavigateNext } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react';
 import { Root, Header } from '../../styled-components/styles';
 import { SketchPicker, CompactPicker, ColorResult  } from 'react-color'
@@ -27,6 +28,7 @@ import { LightenDarkenColor } from 'lighten-darken-color';
 export const KeyBored = () => {
   //======================================================
   const [keyboardData, setKeyboardData] = useState<any>();
+  const [currentKeyboardIndex, setCurrentKeyboardIndex] = useState<number>(0);
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const [customKeyCapsConfig, setCustomKeyCapsConfig] = useState({});
   const [selectedBackgroundImage, setSelectedBackgroundImage] = useState('url(./images/brown-wood-table.jpeg)');
@@ -155,10 +157,35 @@ export const KeyBored = () => {
 
     setKeyboardData(keyboard);
   }
+  //====================================================== keyboard set stuff
+  const keyboards = [Mode65, TOFU60ANSI];
   useEffect(() => {
-    handleSetKeyboard(Mode65);
-    // handleSetKeyboard(TOFU60ANSI);
+    handleSetKeyboard(keyboards[0]);
+    setCurrentKeyboardIndex(0);
   }, [])
+
+
+  const handlePreviousKeyboard = () => {
+    let newIndex = currentKeyboardIndex;
+    if(currentKeyboardIndex === 0) {
+      newIndex = keyboards.length - 1;
+    } else {
+      newIndex--;
+    }
+    handleSetKeyboard(keyboards[newIndex])
+    setCurrentKeyboardIndex(newIndex)
+  }
+  const handleNextKeyboard = () => {
+    let newIndex = currentKeyboardIndex;
+    if(currentKeyboardIndex < keyboards.length - 1) {
+      newIndex++;
+    } else {
+      newIndex = 0;
+    }
+    handleSetKeyboard(keyboards[newIndex])
+    setCurrentKeyboardIndex(newIndex)
+  }
+
   //====================================================== 
   return (
     <Root>
@@ -172,6 +199,11 @@ export const KeyBored = () => {
         }}
       >
         <KeyboardContainer>
+
+          <IconButton onClick={handlePreviousKeyboard}>
+            <NavigateBefore />
+          </IconButton>
+
           <Keyboard 
             caseTopColor={caseTopColor} 
             caseColor={caseColor}
@@ -229,6 +261,10 @@ export const KeyBored = () => {
               })
             )}
           </Keyboard>
+
+          <IconButton onClick={handleNextKeyboard}>
+            <NavigateNext />
+          </IconButton>
 
         </KeyboardContainer>
         {/* //====================================================== */}
@@ -351,10 +387,11 @@ export const KeyBored = () => {
             </AccordionSummary>
             <FlexAccordionDetails>
               <Carousel
-                height={400}
+                // height={400}
                 animation='slide'
-                interval={6000}
-                indicators={false}
+                interval={5000}
+                // indicators={false}
+                autoPlay={false}
               >
                 {backgroundImages.map((item, i) => {
                   return (
