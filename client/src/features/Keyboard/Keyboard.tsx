@@ -6,7 +6,7 @@ import { ExpandMore, ArrowRight, ArrowLeft } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react';
 import { Root, Header } from '../../styled-components/styles';
 import { SketchPicker, CompactPicker, ColorResult  } from 'react-color'
-import { Mode65, TOFU60ANSI } from './dummyData';
+import { Mode65, TOFU60ANSI, TKL40 } from './dummyData';
 import { 
   Keyboard, 
   KeyboardContainer, 
@@ -24,6 +24,8 @@ import { alphaKeys, numericKeys } from './utils';
 import { cloneDeep } from 'lodash';
 import { backgroundImages, keyboardComponentTranslater } from './utils';
 import { LightenDarkenColor } from 'lighten-darken-color'; 
+//======================================================
+  const keyboards = [Mode65, TOFU60ANSI, TKL40];
 //======================================================
 export const KeyBored = () => {
   //======================================================
@@ -158,7 +160,7 @@ export const KeyBored = () => {
     setKeyboardData(keyboard);
   }
   //====================================================== keyboard set stuff
-  const keyboards = [Mode65, TOFU60ANSI];
+
   useEffect(() => {
     handleSetKeyboard(keyboards[0]);
     setCurrentKeyboardIndex(0);

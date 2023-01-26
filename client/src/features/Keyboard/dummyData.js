@@ -565,7 +565,8 @@ export const TOFU60ANSI = {
         name: 'UpArrow',
         width: 'KBD100',
         icon: <ArrowUpward fontSize='small'/>,
-      },      {
+      },      
+      {
         name: 'fn', 
         width: 'KBD100',
       },
@@ -610,6 +611,234 @@ export const TOFU60ANSI = {
         width: 'KBD100',
         icon: <ArrowForward fontSize='small'/>,
       }, 
+    ],
+  ]
+}
+//======================================================
+export const TKL40 = {
+  name: 'TKL 40',
+  defaults: {
+    defaultAlphaKeyColor: '#B90117',
+    defaultAlphaFontColor: '#FFFFFF',
+    defaultNumericKeyColor: '#B90117',
+    defaultNumericFontColor: '#FFFFFF',
+    defaultModifierKeyColor: '#DC143C',
+    defaultModifierFontColor: '#FFFFFF',
+    defaultCaseTopColor: '#778899',
+    defaultCaseColor: '#778899',
+    defaultCaseBottomColor: '#778899',
+    defaultPlateColor: '#000000',
+    defaultCustomKeyCapsConfig: {
+      'Esc': {
+        color: '#FFE5DC',
+        text: '#000000',
+      },
+      'Enter': {
+        color: '#FFE5DC',
+        text: '#000000',
+      },
+    }
+  },
+  data: [
+    [
+      {
+        name: 'Esc',
+        width: 'KBD100',
+      }, 
+      {
+        name: 'Q',
+        width: 'KBD100',
+      },  
+      {
+        name: 'W',
+        width: 'KBD100',
+      },  
+      {
+        name: 'E',
+        width: 'KBD100',
+      },  
+      {
+        name: 'R',
+        width: 'KBD100',
+      },  
+      {
+        name: 'T',
+        width: 'KBD100',
+      },  
+      {
+        name: 'Y',
+        width: 'KBD100',
+      },  
+      {
+        name: 'U',
+        width: 'KBD100',
+      },  
+      {
+        name: 'I',
+        width: 'KBD100',
+      },  
+      {
+        name: 'O',
+        width: 'KBD100',
+      },  
+      {
+        name: 'P',
+        width: 'KBD100',
+      }, 
+      {
+        name: 'Back',
+        width: 'KBD100',
+      }, 
+    ],
+    [
+      {
+        name: 'Tab',
+        width: 'KBD100',
+      }, 
+      {
+        name: 'A',
+        width: 'KBD100',
+      },  
+      {
+        name: 'S',
+        width: 'KBD100',
+      },  
+      {
+        name: 'D',
+        width: 'KBD100',
+      },  
+      {
+        name: 'F',
+        width: 'KBD100',
+      },  
+      {
+        name: 'G',
+        width: 'KBD100',
+      },  
+      {
+        name: 'H',
+        width: 'KBD100',
+      },  
+      {
+        name: 'J',
+        width: 'KBD100',
+      },  
+      {
+        name: 'K',
+        width: 'KBD100',
+      },  
+      {
+        name: 'L',
+        width: 'KBD100',
+      },  
+      {
+        name: ';',
+        width: 'KBD100',
+      }, 
+      {
+        name: 'Enter',
+        width: 'KBD100',
+      }, 
+    ],
+    [
+      {
+        name: 'Shift',
+        width: 'KBD100',
+      }, 
+      {
+        name: 'Z',
+        width: 'KBD100',
+      },  
+      {
+        name: 'X',
+        width: 'KBD100',
+      },  
+      {
+        name: 'C',
+        width: 'KBD100',
+      },  
+      {
+        name: 'V',
+        width: 'KBD100',
+      },  
+      {
+        name: 'B',
+        width: 'KBD100',
+      },  
+      {
+        name: 'N',
+        width: 'KBD100',
+      },  
+      {
+        name: 'M',
+        width: 'KBD100',
+      },  
+      {
+        name: ',',
+        width: 'KBD100',
+      },  
+      {
+        name: '.',
+        width: 'KBD100',
+      },  
+      {
+        name: 'UpArrow',
+        width: 'KBD100',
+        icon: <ArrowUpward fontSize='small'/>,
+      },  
+      {
+        name: '?',
+        width: 'KBD100',
+      }, 
+    ],
+    [
+      {
+        name: 'Ctrl',
+        width: 'KBD100',
+      }, 
+      {
+        name: 'Code',
+        width: 'KBD100',
+      },  
+      {
+        name: 'Alt',
+        width: 'KBD100',
+      },  
+      {
+        name: 'Hyper',
+        width: 'KBD100',
+      },  
+      {
+        name: 'Lower',
+        width: 'KBD100',
+      },  
+      {
+        name: 'SpaceBar',
+        width: 'KBD200',
+      },  
+      {
+        name: 'Raise',
+        width: 'KBD100',
+      },  
+      {
+        name: 'FN',
+        width: 'KBD100',
+      },  
+      {
+        name: 'LeftArrow',
+        width: 'KBD100',
+        icon: <ArrowBack fontSize='small' />,
+      },  
+      {
+        name: 'DownArrow',
+        width: 'KBD100',
+        icon: <ArrowDownward fontSize='small'/>,
+      },  
+      {
+        name: 'RightArrow',
+        width: 'KBD100',
+        icon: <ArrowForward fontSize='small'/>,
+      },  
     ],
   ]
 }
