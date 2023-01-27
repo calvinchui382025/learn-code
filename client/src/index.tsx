@@ -15,6 +15,7 @@ import {
 // import ErrorPage from './components/ErrorPage/ErrorPage';
 import Home from './features/Home/Home';
 import Weather from './features/Weather/Weather';
+import AI from './features/AI/AI';
 import { StyledBurgerMenu, StyledLink, WhiteDivider } from './styled-components/styles';
 import { KeyBored } from './features/Keyboard/Keyboard';
 //======================================================
@@ -43,6 +44,7 @@ root.render(
             <WhiteDivider />
             <StyledLink to={'/Keyboard'} >Keyboard</StyledLink>
             <WhiteDivider />
+            <StyledLink to={'/AI'} >AI</StyledLink>
           </StyledBurgerMenu>
 
           <div id='page-wrap'>
@@ -50,6 +52,7 @@ root.render(
               <Route path='/' element={ <Home /> }/>
               <Route path='/Weather' element={ <Weather /> }/>
               <Route path='/Keyboard' element={ <KeyBored /> } />
+              <Route path='/AI' element={< AI /> } />
             </Routes>
           </div>
 
