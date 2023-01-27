@@ -1,0 +1,27 @@
+{
+  "name": "learn-code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server/index.ts",
+    "server": "nodemon ./server/index.ts",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snyperifle/learn-code.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/snyperifle/learn-code/issues"
+  },
+  "homepage": "https://github.com/snyperifle/learn-code#readme",
+  "dependencies": {
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.20",
+    "react-scripts": "^5.0.1"
+  }
+}
