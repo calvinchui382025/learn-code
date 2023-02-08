@@ -16,6 +16,7 @@ import {
 import Home from './features/Home/Home';
 import Weather from './features/Weather/Weather';
 import AI from './features/AI/AI';
+import { CreditCardInput } from './features/CreditCard/CreditCardInput';
 import { StyledBurgerMenu, StyledLink, WhiteDivider } from './styled-components/styles';
 import { KeyBored } from './features/Keyboard/Keyboard';
 //======================================================
@@ -45,6 +46,8 @@ root.render(
             <StyledLink to={'/Keyboard'} >Keyboard</StyledLink>
             <WhiteDivider />
             <StyledLink to={'/AI'} >AI</StyledLink>
+            <WhiteDivider />
+            <StyledLink to={'/CreditCard'} >Credit Card Input</StyledLink>
           </StyledBurgerMenu>
 
           <div id='page-wrap'>
@@ -53,6 +56,7 @@ root.render(
               <Route path='/Weather' element={ <Weather /> }/>
               <Route path='/Keyboard' element={ <KeyBored /> } />
               <Route path='/AI' element={< AI /> } />
+              <Route path='/CreditCard' element={ <CreditCardInput /> } />
             </Routes>
           </div>
 
