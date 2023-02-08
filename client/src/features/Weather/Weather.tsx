@@ -30,6 +30,7 @@ const SearchInput = styled(TextField)({
 const CardContainer = styled('div')({
   display: 'flex',
   flexDirection: 'column',
+  width: '100vw'
 });
 const Row = styled('div')({
   display: 'flex',

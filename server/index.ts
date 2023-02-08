@@ -6,7 +6,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 //======================================================
-app.get('/test', (req: any, res: { send: (arg0: string) => void; }) => {
+app.get('/test', (req: any, res: { send: (arg0: string) => void }) => {
   res.send('Hello, World!');
 });
 app.post('/login', (req: { body: any; }, res: { send: (arg0: any) => void; }) => {
